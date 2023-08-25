@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model WebAppOglas.Models.Automobil
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="card-header shadow-lg info-color white-text text-center col-md-8">
+    <h3>Brisanje oglasa</h3>
+</div>
+
+<div class="card card-sm shadow-lg col-md-8 flex-center central">
+
+    @using (Html.BeginForm("Delete", "Home", FormMethod.Post, new { @class = "form-group", enctype = "multipart/form-data" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Marka, null, new { @class = "form-control form-control-sm" })
+                    </div> <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Godiste, null, new { @class = "form-control form-control-sm" })
+                    </div>   <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.ZapreminaMotora, null, new { @class = "form-control form-control-sm" })
+                    </div>   <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Snaga, null, new { @class = "form-control form-control-sm" })
+                    </div>  <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Gorivo, null, new { @class = "form-control form-control-sm" })
+                    </div>  <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Karoserija, null, new { @class = "form-control form-control-sm" })
+                    </div>   <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Opis, null, new { @class = "form-control form-control-sm" })
+                    </div> <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Cena, null, new { @class = "form-control form-control-sm" })
+                    </div>    <br />
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.Kontakt, null, new { @class = "form-control form-control-sm" })
+                    </div>    <br />
+                </td>
+
+                <td>
+                    <div class="card-group col-md-8">
+                        <img src="~/img/@Html.DisplayFor(p => p.Fotografija)" height="280" width="280" alt="image" />
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <div class="card-group form-control-sm">
+            <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+        </div> <br />
+
+
+    }
+</div>

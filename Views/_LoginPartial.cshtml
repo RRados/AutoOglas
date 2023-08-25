@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="dropdown">
+    <nav class="navbar  p-0">
+        <ul class="navbar-nav sm">
+            @if (SignInManager.IsSignedIn(User))
+            {            
+                <li class="nav-item ">
+                    <button class="btn btn-sm bg-transparent text-white-50 dropdown-toggle nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Settings
+                    </button>
+
+                    <ul class="dropdown-menu ">
+                        <a class="nav-link text-white-50 font-weight-bold" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile">@User.Identity.Name </a>
+    @*                     <li class="nav-item"><a class="nav-link" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link " id="manage" asp-area="Identity" asp-page="/Account/Manage/Email">Email</a></li>
+                        <li class="nav-item"><a class="nav-link " id="manage" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">Password</a></li>
+
+                        <li class="nav-item"><a class="nav-link " id="manage" asp-area="Identity" asp-page="/Account/Manage/TwoFactorAuthentication">Two-factor authentication</a></li>
+                        <li class="nav-item"><a class="nav-link " id="manage" asp-area="Identity" asp-page="/Account/Manage/PersonalData">Personal data</a></li> *@
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-muted" asp-area="" asp-controller="Home" asp-action="AddNew">Dodaj oglas</a>
+                            </li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted" asp-controller="Admin" asp-action="Index">Admin page</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-muted" asp-controller="Role" asp-action="Index">Role</a>
+                                </li>
+                            }
+                        }
+                        <form class="form-sm text-light" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <input class="nav-link text-white-50 font-weight-bold bg-transparent border-0" id="logout" type="submit" Value="Logout" />
+                        </form>
+                    </ul>
+                </li>  
+            
+                <li class="nav-item">
+                </li>            
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-white-50 font-weight-bold" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white-50 font-weight-bold" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
