@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using WebAppOglas.Models
+@model IEnumerable<IdentityUser>
+
+    @{
+        Layout = "/Views/_MainLayout.cshtml";
+    }
+
+<table class="table table-borderless table-hover shadow">
+
+    <thead class=" text-muted fw-semibold border-bottom border-info text-center">
+        <tr>
+            <td>Id</td>
+            <td>UserName</td>
+            <td>Email</td>
+            <td>Actions</td>
+
+        </tr>
+
+    </thead>
+    @foreach (IdentityUser user in Model)
+    {
+            <tbody class="text-center ">
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td> 
+
+                    <td>                        
+                    <a asp-controller="Admin" asp-action="Details" asp-route-id="@user.Id" class="bi bi-book" style="color:chartreuse;  width: 1rem; margin-right:1rem;"></a>
+                    <a asp-controller="Admin" asp-action="Edit" asp-route-id="@user.Id" class="bi bi-pen " style="color:aqua; width:1rem; margin-right:1rem;"></a>
+                    <a asp-controller="Admin" asp-action="Delete" asp-route-id="@user.Id" class="bi bi-trash3" style="color: red; width:1rem; "></a>
+
+                    @* <a href="#" onclick="ConfirmDelete(@user.Id)" id="@user.Id" class="bi bi-trash3" style="color: red; width:1rem; "></a> *@
+                    </td>
+                </tr>
+            </tbody>
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5  text-danger" id="staticBackdropLabel">Upozorenje!</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 class="text-secondary">Da li ste sigurni da želite da obrišete ?</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a asp-action="Delete" asp-route-id="@user.Id" class="btn-sm btn-danger text-decoration-none" onclick="ConfirmDelete">Confirm</a>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="hiddenIdUser" />
+        </div>
+    }
+</table>
+
+
+
+       @* @Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+
+
+<script>
+    var ConfirmDelete = function (Id) {
+        $("#hiddenIdRole").val(Id);
+        $("#staticBackdrop").modal('show');
+    }
+    var DeleteUser = function () {
+        var Id = $("#hiddenIdRole").val();
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Delete/Id",
+            data: { Id: IdUser },
+            success: function (result) {
+                $("#staticBackdrop").modal("hide");
+                $("#row_" + IdUser).remove();
+            }
+        })
+    }
+</script>

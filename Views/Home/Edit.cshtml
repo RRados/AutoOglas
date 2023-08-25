@@ -1,0 +1,102 @@
+﻿
+
+
+@model WebAppOglas.Models.Automobil
+
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    Layout = "/Views/_MainLayout.cshtml";
+}
+
+
+
+
+<div class="card shadow">
+        
+    <h3 class="card-header bg-transparent text-white-50 text-center">Edit</h3>
+     
+    <div class="card-body">
+              
+            @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
+            {
+        <div class="row justify-content-around">
+
+            <div class="col-md-5 ">
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <label>Name</label>
+                        @Html.TextBoxFor(m => m.Marka, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Marka, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label>Year</label>
+                        @Html.TextBoxFor(m => m.Godiste, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Godiste, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Engine CC</label>
+                        @Html.TextBoxFor(m => m.ZapreminaMotora, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ZapreminaMotora, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Horse power</label>
+                        @Html.TextBoxFor(m => m.Snaga, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Snaga, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Fuel type</label>
+                        @Html.TextBoxFor(m => m.Gorivo, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Gorivo, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Body type</label>
+                        @Html.TextBoxFor(m => m.Karoserija, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Karoserija, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Status</label>
+                        @Html.TextBoxFor(m => m.Opis, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Opis, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Price</label>
+                        @Html.TextBoxFor(m => m.Cena, null, new { @class = "form-control form-control-sm" })
+                        @Html.ValidationMessageFor(m => m.Cena, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-6 mt-1">
+                        <label>Contact No.</label>
+                        @Html.TextBoxFor(m => m.Kontakt, null, new { @class = "form-control form-control-md" })
+                        @Html.ValidationMessageFor(m => m.Kontakt, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="card-footer bg-transparent mt-3 border-0">                        
+                        <button type="submit" value="Save" class="btn btn-outline-info">Save</button>
+                    </div>
+               </div>
+            </div>
+
+                <div class="col">
+
+                    <div class="row justify-content-center mx-auto mt-5">
+                        <img src="~/img/@Html.DisplayFor(p => p.Fotografija)" width="150" alt="image" class="img"/>
+                    </div>
+                        
+                    <input asp-for="Fotografija" type="file" name="fotografija" class="col-md-6 mt-3 p-1" />
+                </div>
+            </div>   
+        }
+    </div>
+</div>
+       

@@ -1,0 +1,53 @@
+﻿@using WebAppOglas.Models
+@model IEnumerable<Automobil>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+    @foreach (Automobil auto in Oglas.UzmiOglas())
+    {
+        <div class="card m-2 rounded-2 d-inline-block">
+
+            <div class="card-header text-muted fw-semibold border-0">
+                @auto.Marka
+            </div>
+
+            <div class="img img-thumbnail border-0">
+
+                @if (Oglas.UzmiOglas().Count == 0)
+                {
+                    <p>
+                        Trenutno nema oglasa !
+                    </p>
+                }
+                else
+                {
+                    <a rel="alternate" href="../Home/Details/@auto.IdAutomobil" target="_self">
+                        <img src="~/img/@auto.Fotografija" alt="image" class="object-fit-cover img img-thumbnail border-0" style="height: 14em; width: 21em;" />
+                    </a>
+                }
+
+            </div>
+        </div>
+    }
+
+<script>
+
+    (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach( form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity())
+                {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+                }, false)
+            }
+        )
+    })()
+
+</script>

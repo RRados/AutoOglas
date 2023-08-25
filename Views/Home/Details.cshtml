@@ -1,0 +1,73 @@
+﻿@using WebAppOglas.Models
+@model WebAppOglas.Models.Automobil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (TempData["auto"] != null)
+{
+    <p class="alert alert-success col-10">Oglas uspesno dodat! </p>
+}
+
+<br />
+
+<div class="container-fluid card mt-5 shadow" style="max-width:700px;">
+
+    @using (Html.BeginForm("Details", "Home", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <div class="m-3">
+            <p><h4 class="card-title">@Html.DisplayFor(p => p.Marka)</h4></p>
+            <div class="progress mb-2" role="progressbar" aria-label="1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 1px">
+                <div class="progress-bar bg-info" style="width: 100%"></div>
+            </div>
+            <table>
+                <tr class="m-5 p-2">
+
+                    <td class="text-left teal-text">
+                        Godiste:    <br />
+                        Kubikaza:   <br />
+                        Snaga:      <br />
+                        Gorivo:     <br />
+                        Karoserija: <br />
+                        Opis:       <br />
+                        Telefon:    <br />
+                        Cena:       <br />
+                    </td>
+
+                    <td class="text-left fw-semibold p-5">
+                        @Html.DisplayFor(p => p.Godiste)         <br />
+                        @Html.DisplayFor(p => p.ZapreminaMotora) <br />
+                        @Html.DisplayFor(p => p.Snaga)           <br />
+                        @Html.DisplayFor(p => p.Gorivo)          <br />
+                        @Html.DisplayFor(p => p.Karoserija)      <br />
+                        @Html.DisplayFor(p => p.Opis)            <br />
+                        @Html.DisplayFor(p => p.Kontakt)         <br />
+                        @Html.DisplayFor(p => p.Cena)            <br />
+                    </td>
+
+                    <td class="p-3 ">
+                        <img src="~/img/@Html.DisplayFor(p => p.Fotografija)" class="img img-thumbnail img-fluid rounded" width="350" alt="..." />
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+
+                <div class="col-md-8">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (!User.IsInRole("admin"))
+                        {
+                            <a class="btn btn-outline-info btn-md shadow" href="../Edit/@Html.DisplayFor(p => p.IdAutomobil)">Edit</a>
+                        }
+
+                        @if (User.IsInRole("admin"))
+                        {
+                            <a class="btn btn-outline-danger btn-md shadow m-2" href="../Delete/@Html.DisplayFor(p => p.IdAutomobil)">Delete</a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

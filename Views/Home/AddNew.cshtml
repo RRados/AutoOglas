@@ -1,0 +1,82 @@
+﻿@model WebAppOglas.Models.Automobil
+
+@{
+    ViewBag.Title = "Add New";
+}
+
+<div class="container card card-body rounded-lg" style="width:30em;">
+
+    <h4 class="text-muted mb-2 p-1">New</h4>
+
+    <form asp-action="AddNew" class="card card-body needs-validation validate" , enctype="multipart/form-data" validate novalidate>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Marka" id="validationCustom02" placeholder="Marka automobila" class="form-control bg-dark needs-validation" validate required />
+            <div class="valid-feedback">   Looks good!  </div>
+            <label class="invalid-feedback">NO!</label>
+        </div>
+
+        <div class="col-md-12 mb-3" novalidate id="validationCustom02">
+            <input asp-for="Godiste" id="validationCustom02" placeholder="Godiste" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="ZapreminaMotora" id="validationCustom02" placeholder="ZapreminaMotora" class="form-control bg-dark needs-validation" validate required />
+
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Snaga" id="validationCustom02" placeholder="Snaga" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Gorivo" id="validationCustom02" placeholder="Gorivo" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Karoserija" id="validationCustom02" placeholder="Karoserija" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Opis" id="validationCustom02" placeholder="Opis" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Cena" id="validationCustom02" placeholder="Cena" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <input asp-for="Kontakt" id="validationCustom02" placeholder="Kontakt" class="form-control bg-dark needs-validation" validate required />
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label asp-for="Fotografija" class="col-form-label-sm"></label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file" name="fotografija" validate required>
+        </div>
+
+        <button type="submit" class="btn btn-md btn-outline-info rounded-lg mt-2 col-md-2 mb-3 font-weight-bold">Save</button>
+
+    </form>
+</div>
+
+
+<script>
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>

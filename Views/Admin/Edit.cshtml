@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using WebAppOglas.Models
+@model IdentityUser
+@{
+    Layout = "/Views/_MainLayout.cshtml";
+}
+
+<div class="row justify-content-center">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-transparent text-white-50">
+            <h3 class=" text-white-50 text-center">Edit user</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Edit" method="post">
+
+                <div class="form-group row justify-content-center">
+
+                    <div class="col-md-3">
+                        <label class="" for="name">Name:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.UserName" />
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label class="" for="name">Normalized Username:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.NormalizedUserName" />
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <label class="" for="name">Phone:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.PhoneNumber" />
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="name">Email:</label>
+                        <input name="name" class="form-control mb-3 " value="@Model.Email" />
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label for="name">Normalized Email:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.NormalizedEmail" />
+                    </div>
+
+
+                    <div class="col-md-10">
+                        <label class="" for="name">PasswordHash:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.PasswordHash" />
+                    </div>
+
+
+                    <div class="col-md-10">
+                        <label class="" for="name">Security Stamp:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.SecurityStamp" />
+                    </div>
+
+
+                    <div class="col-md-6"> 
+                        <label class="" for="name">Lockout End:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.LockoutEnd" /><br />
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <label class="" for="name">Lockout enabled:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.LockoutEnabled.ToString()" /><br />
+                    </div>
+        
+
+                    <div class="col-md-2">
+                        <label class="" for="name">Access Failed Count:</label>
+                        <input name="name" class="form-control mb-3" value="@Model.AccessFailedCount" />
+                    </div>
+
+                    <button type="submit" class="btn btn-sm btn-outline-info mt-3 col-md-3 ml-3">Save</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    var roles = (List<IdentityRole>)ViewData["roles"];
+}
+
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="container p-3 bg-dark border border-info rounded mt-5 shadow-lg" style="width: 20em;">
+
+    <div class="card-header border-0 mt-2">
+        <h2 class="text-white-50">@ViewData["Title"]</h2>
+        <hr class="bg-info" />
+    </div>
+
+    <div class="form-group text-white-50">
+        <label asp-for="Input.Email" class="m-1"></label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group text-white-50 mt-3">
+        <label asp-for="Input.Password"></label>
+        <input asp-for="Input.Password" class="form-control" />
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group text-white-50 mt-3">
+        <label asp-for="Input.ConfirmPassword"></label>
+        <input asp-for="Input.ConfirmPassword" class="form-control" />
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <br />
+    <div class="form-group mb-3">
+        <button type="submit" class="btn btn-sm p-2 btn-outline-info btn">Register</button>
+    </div>
+   
+        <a class="nav-link text-white-50 font-weight-bold mb-3 mt-4" id="login" asp-area="Identity" asp-page="/Account/Login">Have an account? Please Login</a>
+  
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
