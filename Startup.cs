@@ -38,7 +38,7 @@ namespace WebAppOglas
                     .AddDefaultTokenProviders()
                     .AddDefaultUI()
                     .AddRoleManager<RoleManager<IdentityRole>>()
-                    .AddEntityFrameworkStores<WebAppOglasContext>();
+                    .AddEntityFrameworkStores<WebAppOglasContext>(); 
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -84,6 +84,8 @@ namespace WebAppOglas
                     );
                 endpoints.MapRazorPages();
             });
+
+
         }
     }
 }
